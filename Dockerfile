@@ -1,4 +1,4 @@
-FROM everflux/ng-cli
+FROM triondevelopment/ng-cli
 
 USER root
 
