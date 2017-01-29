@@ -1,0 +1,16 @@
+#!/bin/bash
+
+find_free_servernum() {
+    i=0
+    while [ -f /tmp/.X$i-lock ]; do
+        i=$(($i + 1))
+    done
+    echo $i
+}
+
+export DISPLAY=":$(find_free_servernum)"
+Xvfb "$DISPLAY" -ac -screen 0 "${XVFB_WHD:-1280x720x16}" -nolisten tcp +render &
+xvfb_pid=$!
+
+chromium --no-sandbox $@
+kill -TERM $xvfb_pid > /dev/null 2>&1
