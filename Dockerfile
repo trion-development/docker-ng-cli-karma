@@ -1,4 +1,4 @@
-FROM triondevelopment/ng-cli
+FROM trion/ng-cli
 
 USER root
 
