@@ -1,5 +1,7 @@
 FROM trion/ng-cli
 
+MAINTAINER trion development GmbH "info@trion.de"
+
 USER root
 
 RUN apt-get update \
