@@ -11,6 +11,6 @@ docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng build
 ```
 
 Running karma unit tests in docker container
-----
+```
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
-----
+```
