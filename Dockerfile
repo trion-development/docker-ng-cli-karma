@@ -4,18 +4,15 @@ MAINTAINER trion development GmbH "info@trion.de"
 
 USER root
 
-RUN apt-get update \
- && apt-get install -y \
-    chromium \
-    xvfb \
-    libosmesa6 \
- && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
- && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser \
- && mkdir /usr/lib/chromium-browser/ \
- && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /usr/lib/chromium-browser/libosmesa.so
+RUN set -xe \
+ && (wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -) \
+ && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/chrome.list \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends \
+    google-chrome-beta \
+    libosmesa6
 
-ADD xvfb-chromium /usr/bin/xvfb-chromium
-ADD xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
-
+RUN ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /opt/google/chrome-beta/libosmesa.so \
+ && sed -i 's,--user-data-dir,--no-sandbox --headless --remote-debugging-port=9222 --user-data-dir,' /opt/google/chrome-beta/google-chrome-beta
 
 USER $USER_ID
