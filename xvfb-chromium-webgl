@@ -9,8 +9,8 @@ find_free_servernum() {
 }
 
 export DISPLAY=":$(find_free_servernum)"
-Xvfb "$DISPLAY" -ac -screen 0 "${XVFB_WHD:-1280x720x16}" -nolisten tcp +render &
+Xvfb "$DISPLAY" -ac -screen 0 "${XVFB_WHD:-1280x800x16}" -nolisten tcp +render &
 xvfb_pid=$!
 
-chromium --no-sandbox --use-gl=osmesa  --enable-webgl --ignore-gpu-blacklist $@
+chromium --no-sandbox --enable-webgl --ignore-gpu-blacklist --window-size=1024,768  $@
 kill -TERM $xvfb_pid > /dev/null 2>&1
