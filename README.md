@@ -22,10 +22,16 @@ In order to use the WebGL configuration, you need to use `xvfb-chromium-webgl` i
 
 That wrapper has the additional switches `--enable-webgl --ignore-gpu-blacklist` enabled, which are required for software WebGL rendering.
 
-Example karma config:
+This can be configured in the karma configuration, f.e.
 
 ```
 browsers: ['/usr/bin/xvfb-chromium-webgl'],
+```
+
+or you can specify the chrome excutable using the `CHROME_BIN` environment variable like
+
+```
+docker run -e CHROME_BIN=/usr/bin/xvfb-chromium-webgl -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --single-run
 ```
 
 ## What about *-headless browsers
