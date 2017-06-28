@@ -10,6 +10,13 @@ docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng serve -host 0.0
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng build
 ```
 
+If you want to clone additional git repositories, f.e. from package.json, and you run with a different user than uid 1000 you need to mount the passwd since git requires to resolve the uid.
+
+```
+docker run -u $(id -u) --rm -p 4200:4200 -v /etc/passwd:/etc/passwd -v "$PWD":/app trion/ng-cli npm install
+```
+
+
 ## Running karma unit tests in docker container
 ```
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
