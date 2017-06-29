@@ -12,5 +12,5 @@ export DISPLAY=":$(find_free_servernum)"
 Xvfb "$DISPLAY" -ac -screen 0 "${XVFB_WHD:-1280x720x16}" -nolisten tcp +render &
 xvfb_pid=$!
 
-chromium --no-sandbox $@
+chrome.real --no-sandbox $@
 kill -TERM $xvfb_pid > /dev/null 2>&1
