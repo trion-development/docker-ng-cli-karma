@@ -20,7 +20,6 @@ RUN apt-get update \
  && ln -s /opt/google/chrome/google-chrome.real /etc/alternatives/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser \
- && mkdir /usr/lib/google-chrome/ \
- && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /usr/lib/google-chrome/libosmesa.so
+ && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /opt/google/chrome/libosmesa.so
 
 USER $USER_ID
