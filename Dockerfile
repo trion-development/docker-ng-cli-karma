@@ -4,6 +4,9 @@ MAINTAINER trion development GmbH "info@trion.de"
 
 USER root
 
+ADD xvfb-chromium /usr/bin/xvfb-chromium
+ADD xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
+
 RUN apt-get update \
     && apt-get install -y \
       xvfb \
@@ -16,8 +19,5 @@ RUN apt-get update \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser \
  && mkdir /usr/lib/google-chrome/ \
  && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /usr/lib/google-chrome/libosmesa.so
-
-ADD xvfb-chromium /usr/bin/xvfb-chromium
-ADD xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
 
 USER $USER_ID
