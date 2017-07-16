@@ -13,7 +13,7 @@ RUN apt-get update \
       libosmesa6 \
       libgconf-2-4 \
  && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
- && (dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install) \
+ && (dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install; rm google-chrome-stable_current_amd64.deb) \
  && mv /usr/bin/google-chrome /usr/bin/google-chrome.real  \
  && mv /opt/google/chrome/google-chrome /opt/google/chrome/google-chrome.real  \
  && rm /etc/alternatives/google-chrome \
