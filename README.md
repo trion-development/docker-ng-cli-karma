@@ -22,6 +22,11 @@ docker run -u $(id -u) --rm -p 4200:4200 -v /etc/passwd:/etc/passwd -v "$PWD":/a
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
 ```
 
+## Running karma unit tests in docker container, exiting after test run
+```
+docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --watch false --single-run true
+```
+
 ## Using WebGL
 WebGL is supported using Mesa software rendering. Since this is much slower it is not enabled by default.
 
@@ -39,6 +44,20 @@ or you can specify the chrome excutable using the `CHROME_BIN` environment varia
 
 ```
 docker run -e CHROME_BIN=/usr/bin/xvfb-chromium-webgl -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --single-run
+```
+
+## Interactive debugging
+Instead of running on the hidden Xvfb, you can also run the provided Chrome on a real display.
+To do so you need to export the display, bind the /tmp sockets, and select the provided `display-chromium`
+startup wrapper via the `CHROME_BIN` environment variable:
+
+```
+docker run -e DISPLAY=:0 -e CHROME_BIN=/usr/bin/display-chromium -u $(id -u) --rm -v /tmp:/tmp -v "$PWD":/app trion/ng-cli-karma ng test
+```
+
+If you forget to expose the /tmp/.X* socket you'll get an error message like:
+```
+ERROR:nacl_helper_linux.cc(310)] NaCl helper process running without a sandbox!
 ```
 
 ## What about *-headless browsers

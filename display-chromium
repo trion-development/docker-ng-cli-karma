@@ -1,0 +1,4 @@
+#!/bin/bash
+
+google-chrome.real --no-sandbox --no-first-run $@
+
