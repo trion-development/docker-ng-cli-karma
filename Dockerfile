@@ -4,6 +4,7 @@ MAINTAINER trion development GmbH "info@trion.de"
 
 USER root
 
+ADD display-chromium /usr/bin/display-chromium
 ADD xvfb-chromium /usr/bin/xvfb-chromium
 ADD xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
 
