@@ -1,4 +1,4 @@
-FROM trion/ng-cli:1.6.2
+FROM trion/ng-cli:1.6.3
 
 MAINTAINER trion development GmbH "info@trion.de"
 
