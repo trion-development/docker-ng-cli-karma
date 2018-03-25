@@ -4,9 +4,9 @@ MAINTAINER trion development GmbH "info@trion.de"
 
 USER root
 
-ADD display-chromium /usr/bin/display-chromium
 ADD xvfb-chromium /usr/bin/xvfb-chromium
 ADD xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
+ADD display-chromium /usr/bin/display-chromium
 
 RUN apt-get update \
     && apt-get install -y \
