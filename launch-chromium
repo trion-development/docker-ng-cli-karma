@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "custom chrome launcher..."
+/usr/lib/chromium/chromium-launcher.sh --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 --no-first-run $@

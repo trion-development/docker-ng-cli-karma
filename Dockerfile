@@ -4,23 +4,48 @@ MAINTAINER trion development GmbH "info@trion.de"
 
 USER root
 
-ADD xvfb-chromium /usr/bin/xvfb-chromium
-ADD xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
-ADD display-chromium /usr/bin/display-chromium
+ADD launch-chromium /usr/bin/launch-chromium
 
 # TODD: add https://pkgs.alpinelinux.org/package/edge/community/x86_64/chromium
 
-RUN apk add -U --no-cache \
-      xvfb \
-      mesa-dev \
-      gconf \
+RUN set -xe \
+ && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+ && apk add -U --no-cache \
+      udev \
+      ttf-opensans \
       chromium \
- && rm /usr/bin/chromium-browser  \
- && mv /usr/lib/chromium/chromium-launcher.sh /usr/lib/chromium/chromium-launcher.sh.real  \
- && ln -s /usr/lib/chromium/chromium-launcher.sh.real /usr/bin/chromium-browser.real \
- && ln -s /usr/lib/chromium/chromium-launcher.sh.real /usr/bin/google-chrome.real \
- && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
- && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser \
- && ln -s /usr/lib/libOSMesa.so /usr/lib/chromium/libosmesa.so
+ && rm -f /usr/bin/chromium-browser /usr/bin/google-chrome \
+ && ln -s /usr/bin/launch-chromium /usr/bin/google-chrome \
+ && ln -s /usr/bin/launch-chromium /usr/bin/chromium-browser \
+ && rm -rf /var/lib/apt/lists/* \
+    /var/cache/apk/* \
+    /usr/share/man \
+    /tmp/* \
+    /usr/lib/node_modules/npm/man \
+    /usr/lib/node_modules/npm/doc \
+    /usr/lib/node_modules/npm/html
+
+# RUN set -xe \
+#  && echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+#  && apk add -U --no-cache \
+#       udev \
+#       ttf-opensans \
+#       mesa-dri-swrast \
+#       udev \
+#       mesa-dev mesa-gles \
+#       chromium \
+#  && rm -f /usr/bin/chromium-browser /usr/bin/google-chrome \
+#  && ln -s /usr/bin/launch-chromium /usr/bin/google-chrome \
+#  && ln -s /usr/bin/launch-chromium /usr/bin/chromium-browser \
+#  && mkdir /usr/lib/chromium/swiftshader/ \
+#  && ln -s /usr/lib/libGLESv2.so /usr/lib/chromium/swiftshader/libGLESv2.so \
+#  && rm -rf /var/lib/apt/lists/* \
+#     /var/cache/apk/* \
+#     /usr/share/man \
+#     /tmp/* \
+#     /usr/lib/node_modules/npm/man \
+#     /usr/lib/node_modules/npm/doc \
+#     /usr/lib/node_modules/npm/html
+
 
 USER $USER_ID
