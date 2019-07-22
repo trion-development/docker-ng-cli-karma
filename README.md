@@ -66,3 +66,9 @@ Mozilla Firefox and Google Chrome are in the process to provide headless browser
 Currently WebGL needs the mesa software renderer for Chrome, but it will change to the swift renderer, see https://bugs.chromium.org/p/chromium/issues/detail?id=617551
 
 Mozilla is still working on headless support in Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=1338004
+
+## What if tests are not running (reliably)
+Run the tests in interactive debugging mode (see above) and check the browser console.
+
+If there are errors like `Failed to load resource: net::ERR_INSUFFICIENT_RESOURCES` or `An error was thrown in afterAll Error: Can't find ./some-file.ts] (required by other-file.ts) at require` it may be that the browser is running out of shared memory. Try to either increase the shared memory with the docker parameter `--shm-size 1G` or disable shared memory usage by specifying the flag `--disable-dev-shm-usage` for Chromium/Chrome.
+
