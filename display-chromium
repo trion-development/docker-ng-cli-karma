@@ -1,4 +1,4 @@
 #!/bin/bash
 
-google-chrome.real --no-sandbox --no-first-run $@
+google-chrome.real --disable-dev-shm-usage --no-sandbox --no-first-run $@
 
