@@ -1,6 +1,7 @@
 FROM trion/ng-cli:8.3.20
 
 MAINTAINER trion development GmbH "info@trion.de"
+LABEL chrome=$CHROME_VERSION
 
 USER root
 

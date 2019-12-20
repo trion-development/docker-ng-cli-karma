@@ -1,0 +1,6 @@
+#!/bin/bash
+# $IMAGE_NAME var is injected into the build so the tag is correct.
+
+docker build \
+  --build-arg CHROME_VERSION=$( curl -sSL http://omahaproxy.appspot.com/all\?csv\=1 | grep linux,stable | cut -d ',' -f ) \
+  -t $IMAGE_NAME .
