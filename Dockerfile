@@ -16,6 +16,7 @@ RUN apt-get update \
       xvfb \
       libosmesa6 \
       libgconf-2-4 \
+      wget \
  && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
  && (dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install; rm google-chrome-stable_current_amd64.deb; apt-get clean; rm -rf /var/lib/apt/lists/* ) \
  && mv /usr/bin/google-chrome /usr/bin/google-chrome.real  \
