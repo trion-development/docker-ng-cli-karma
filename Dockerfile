@@ -14,6 +14,7 @@ COPY display-chromium /usr/bin/display-chromium
 RUN apt-get update \
     && apt-get install -y \
       xvfb \
+      libxss1 \
       libosmesa6 \
       libgconf-2-4 \
       wget \
