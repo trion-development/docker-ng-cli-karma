@@ -2,6 +2,8 @@
 
 Docker container to run Karma tests with Angular CLI inside Docker using Xvfb
 
+This image is sponsored and maintained by https://www.trion.de/ - trion offers commercial training and consulting for all things Docker and Angular.
+
 ## Example usage
 ```
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng new MyDemo
