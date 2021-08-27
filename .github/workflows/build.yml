@@ -72,9 +72,10 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
-          #google chrome is just amd64
+          #google chrome is just amd64, uses chromium from newer debian as replacement
+          #platforms: linux/amd64
           #platforms: linux/amd64,linux/arm64,linux/arm/v7
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ steps.prep.outputs.tags }}
           cache-from: type=local,src=/tmp/.buildx-cache
