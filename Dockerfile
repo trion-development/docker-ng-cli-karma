@@ -18,6 +18,7 @@ RUN apt-get update \
       libosmesa6 \
       libgconf-2-4 \
       wget \
+      apt-transport-https \
  && MACH=$(uname -m) \
  && [ $MACH = "x86_64" ] && ( \
    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
