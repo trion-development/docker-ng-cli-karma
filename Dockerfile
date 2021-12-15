@@ -1,4 +1,4 @@
-FROM trion/ng-cli:13.1.1
+FROM trion/ng-cli:13.1.2
 
 MAINTAINER trion development GmbH "info@trion.de"
 ARG CHROME_VERSION=<unset>
