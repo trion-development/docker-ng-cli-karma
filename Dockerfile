@@ -1,9 +1,9 @@
-FROM trion/ng-cli:13.3.5
+FROM trion/ng-cli:latest
 
 MAINTAINER trion development GmbH "info@trion.de"
 ARG CHROME_VERSION=<unset>
 
-LABEL chrome=$CHROME_VERSION
+LABEL chrome=$CHROME_VERSION ng-cli=latest
 
 USER root
 
