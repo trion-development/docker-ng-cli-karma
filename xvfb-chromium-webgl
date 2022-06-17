@@ -12,5 +12,10 @@ export DISPLAY=":$(find_free_servernum)"
 Xvfb "$DISPLAY" -ac -screen 0 "${XVFB_WHD:-1280x800x16}" -nolisten tcp +render &
 xvfb_pid=$!
 
+function cleanup {      
+  kill -TERM $xvfb_pid > /dev/null 2>&1
+}
+
+trap cleanup EXIT
+
 google-chrome.real --no-sandbox --no-first-run --use-gl=osmesa --enable-webgl --ignore-gpu-blacklist --window-size=1024,768  $@
-kill -TERM $xvfb_pid > /dev/null 2>&1

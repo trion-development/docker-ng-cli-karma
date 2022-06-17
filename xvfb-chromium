@@ -14,5 +14,10 @@ xvfb_pid=$!
 
 echo "(wrapper:) launching with: $@"
 
+function cleanup {      
+  kill -TERM $xvfb_pid > /dev/null 2>&1
+}
+
+trap cleanup EXIT
+
 google-chrome.real --disable-dev-shm-usage --no-sandbox --disable-gpu --no-first-run $@
-kill -TERM $xvfb_pid > /dev/null 2>&1
