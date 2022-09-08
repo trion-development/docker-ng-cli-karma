@@ -1,4 +1,4 @@
-FROM trion/ng-cli:latest
+FROM trion/ng-cli:14.2.2
 
 ARG CHROME_VERSION=<unset>
 
