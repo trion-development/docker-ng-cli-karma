@@ -26,7 +26,7 @@ docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
 
 ## Running karma unit tests in docker container, exiting after test run
 ```
-docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --watch false --single-run true
+docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --watch false
 ```
 
 ## Using WebGL
