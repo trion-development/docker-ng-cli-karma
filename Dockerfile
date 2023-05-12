@@ -3,6 +3,7 @@ FROM trion/ng-cli:latest
 ARG CHROME_VERSION=<unset>
 
 LABEL chrome=$CHROME_VERSION ng-cli='16.0.1'
+LABEL org.opencontainers.image.source="https://github.com/angular/angular-cli"
 
 USER root
 
