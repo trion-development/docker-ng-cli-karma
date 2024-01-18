@@ -17,6 +17,7 @@ RUN apt-get update \
       libosmesa6 \
       libgconf-2-4 \
       wget \
+      ffmpeg \
       apt-transport-https \
  && MACH=$(uname -m) \
  && [ $MACH = "x86_64" ] && ( \
