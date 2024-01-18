@@ -1,6 +1,6 @@
 FROM trion/ng-cli:latest
 
-ARG CHROME_VERSION=<unset>
+ARG CHROME_VERSION=<unset> USER_ID=1000
 
 LABEL chrome=$CHROME_VERSION ng-cli='17.1.0'
 
@@ -17,7 +17,6 @@ RUN apt-get update \
       libosmesa6 \
       libgconf-2-4 \
       wget \
-      ffmpeg \
       apt-transport-https \
  && MACH=$(uname -m) \
  && [ $MACH = "x86_64" ] && ( \
