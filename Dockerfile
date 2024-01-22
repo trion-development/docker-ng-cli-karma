@@ -41,4 +41,6 @@ RUN apt-get update \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser 
 
 
-USER $USER_ID
+# This may be desired, but breaks past behaviour
+# https://github.com/trion-development/docker-ng-cli-karma/issues/23
+# USER $USER_ID
