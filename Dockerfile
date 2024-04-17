@@ -2,7 +2,7 @@ FROM trion/ng-cli:latest
 
 ARG CHROME_VERSION=<unset> USER_ID=1000
 
-LABEL chrome=$CHROME_VERSION ng-cli='17.3.4'
+LABEL chrome=$CHROME_VERSION ng-cli='17.3.5'
 
 USER root
 
