@@ -9,6 +9,7 @@ This image is sponsored and maintained by https://www.trion.de/ - trion offers c
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng new MyDemo
 cd MyDemo
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng serve --host 0.0.0.0
+docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng serve --host :: #ipv6
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng build
 ```
 
