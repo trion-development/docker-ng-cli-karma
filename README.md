@@ -21,7 +21,7 @@ docker run -u $(id -u) --rm -p 4200:4200 -v /etc/passwd:/etc/passwd -v "$PWD":/a
 
 
 ## Running karma unit tests in docker container
-```
+```run
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
 ```
 
@@ -46,7 +46,7 @@ browsers: ['/usr/bin/xvfb-chromium-webgl'],
 or you can specify the chrome excutable using the `CHROME_BIN` environment variable like
 
 ```
-docker run -e CHROME_BIN=/usr/bin/xvfb-chromium-webgl -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --single-run
+docker run -e CHROME_BIN=/usr/bin/xvfb-chromium-webgl -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
 ```
 
 ## Interactive debugging
