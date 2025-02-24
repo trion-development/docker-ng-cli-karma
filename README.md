@@ -21,7 +21,7 @@ docker run -u $(id -u) --rm -p 4200:4200 -v /etc/passwd:/etc/passwd -v "$PWD":/a
 
 
 ## Running karma unit tests in docker container
-```run
+```
 docker run -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
 ```
 
