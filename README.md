@@ -46,7 +46,7 @@ browsers: ['/usr/bin/xvfb-chromium-webgl'],
 or you can specify the chrome excutable using the `CHROME_BIN` environment variable like
 
 ```
-docker run -e CHROME_BIN=/usr/bin/xvfb-chromium-webgl -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test
+docker run -e CHROME_BIN=/usr/bin/xvfb-chromium-webgl -u $(id -u) --rm -v "$PWD":/app trion/ng-cli-karma ng test --watch false
 ```
 
 ## Interactive debugging
