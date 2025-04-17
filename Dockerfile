@@ -1,4 +1,4 @@
-FROM trion/ng-cli:latest
+FROM trion/ng-cli:19.2.8
 
 ARG CHROME_VERSION=<unset> USER_ID=1000
 
