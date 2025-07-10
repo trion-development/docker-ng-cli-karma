@@ -21,7 +21,7 @@ RUN apt-get update \
  && MACH=$(uname -m) \
  && [ $MACH = "x86_64" ] && ( \
    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-   && (dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install; rm google-chrome-stable_current_amd64.deb; apt-get clean; rm -rf /var/lib/apt/lists/* ) \
+   && (dpkg -i google-chrome-stable_current_amd64.deb; apt --fix-broken install -y; apt-get -fy install; rm google-chrome-stable_current_amd64.deb; apt-get clean; rm -rf /var/lib/apt/lists/* ) \
    && mv /usr/bin/google-chrome-stable /usr/bin/google-chrome.real \
    && mv /opt/google/chrome/chrome /opt/google/chrome/google-chrome.real  \
    && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /opt/google/chrome/libosmesa.so \
@@ -36,6 +36,7 @@ RUN apt-get update \
    && mv /usr/bin/chromium /usr/bin/google-chrome.real \
  ) || true \
  && rm -f /etc/alternatives/google-chrome \
+ && rm -f /usr/bin/google-chrome \
  && ln -s /opt/google/chrome/google-chrome.real /etc/alternatives/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser 
