@@ -2,7 +2,7 @@ FROM trion/ng-cli:20.1.0
 
 ARG CHROME_VERSION=<unset> USER_ID=1000
 
-LABEL chrome=$CHROME_VERSION ng-cli='20.0.5'
+LABEL chrome=$CHROME_VERSION ng-cli='20.1.0'
 
 USER root
 
@@ -37,8 +37,9 @@ RUN apt-get update \
  ) || true \
  && rm -f /etc/alternatives/google-chrome \
  && rm -f /usr/bin/google-chrome \
- && ln -s /opt/google/chrome/google-chrome.real /etc/alternatives/google-chrome \
+ && ln -s /opt/google/chrome/google-chrome.real /usr/bin/chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
+ && ln -s /usr/bin/xvfb-chromium /etc/alternatives/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser 
 
 
