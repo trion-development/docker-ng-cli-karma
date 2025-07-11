@@ -25,6 +25,8 @@ RUN apt-get update \
    && mv /usr/bin/google-chrome-stable /usr/bin/google-chrome.real \
    && mv /opt/google/chrome/chrome /opt/google/chrome/google-chrome.real  \
    && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /opt/google/chrome/libosmesa.so \
+   && ln -s /opt/google/chrome/google-chrome.real /opt/google/chrome/chrome \
+   && ln -s /opt/google/chrome/google-chrome.real /usr/bin/chrome \
    ) || true  \
  && [ $MACH != "x86_64" ] && ( \
    echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/debian.list \
@@ -37,8 +39,6 @@ RUN apt-get update \
  ) || true \
  && rm -f /etc/alternatives/google-chrome \
  && rm -f /usr/bin/google-chrome \
- && ln -s /opt/google/chrome/google-chrome.real /usr/bin/chrome \
- && ln -s /opt/google/chrome/google-chrome.real /opt/google/chrome/chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /etc/alternatives/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser 
