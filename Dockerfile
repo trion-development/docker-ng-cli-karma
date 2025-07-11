@@ -39,6 +39,7 @@ RUN apt-get update \
  && rm -f /usr/bin/google-chrome \
  && ln -s /opt/google/chrome/google-chrome.real /etc/alternatives/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
+ && ln -s /usr/bin/xvfb-chromium /usr/bin/chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser 
 
 
