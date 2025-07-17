@@ -29,8 +29,8 @@ RUN apt-get update \
    && ln -s /opt/google/chrome/google-chrome.real /usr/bin/chrome \
    ) || true  \
  && [ $MACH != "x86_64" ] && ( \
-   echo "deb http://deb.debian.org/debian buster main" >> /etc/apt/sources.list.d/debian.list \
-   && echo "deb http://deb.debian.org/debian buster-updates main" >> /etc/apt/sources.list.d/debian.list \
+   echo "deb http://deb.debian.org/debian bookworm main" >> /etc/apt/sources.list.d/debian.list \
+   && echo "deb http://deb.debian.org/debian bookworm-updates main" >> /etc/apt/sources.list.d/debian.list \
    && echo 'Package: chromium*' >> /etc/apt/preferences.d/chromium.pref \
    && echo 'Pin: origin "ftp.debian.org"' >> /etc/apt/preferences.d/chromium.pref \
    && echo 'Pin-Priority: 700' >> /etc/apt/preferences.d/chromium.pref \
