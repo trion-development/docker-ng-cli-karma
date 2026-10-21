@@ -11,7 +11,7 @@ COPY xvfb-chromium-webgl /usr/bin/xvfb-chromium-webgl
 COPY display-chromium /usr/bin/display-chromium
 
 RUN apt-get update \
-    && apt-get install -y \
+    && apt-get install -y --no-install-recommends \
       xvfb \
       libxss1 \
       libosmesa6 \
@@ -21,12 +21,14 @@ RUN apt-get update \
  && MACH=$(uname -m) \
  && [ $MACH = "x86_64" ] && ( \
    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-   && (dpkg -i google-chrome-stable_current_amd64.deb; apt --fix-broken install -y; apt-get -fy install; rm google-chrome-stable_current_amd64.deb; apt-get clean; rm -rf /var/lib/apt/lists/* ) \
+   && (dpkg -i google-chrome-stable_current_amd64.deb; apt --fix-broken install -y --no-install-recommends; apt-get -fy install --no-install-recommends; rm google-chrome-stable_current_amd64.deb; apt-get clean; rm -rf /var/lib/apt/lists/* ) \
    && mv /usr/bin/google-chrome-stable /usr/bin/google-chrome.real \
    && mv /opt/google/chrome/chrome /opt/google/chrome/google-chrome.real  \
    && ln -s /usr/lib/x86_64-linux-gnu/libOSMesa.so.6 /opt/google/chrome/libosmesa.so \
    && ln -s /opt/google/chrome/google-chrome.real /opt/google/chrome/chrome \
    && ln -s /opt/google/chrome/google-chrome.real /usr/bin/chrome \
+   && rm -rf /opt/google/chrome/WidevineCdm \
+   && find /opt/google/chrome/locales -type f ! -name 'en-US.pak' -delete \
    ) || true  \
  && [ $MACH != "x86_64" ] && ( \
    echo "deb http://deb.debian.org/debian bookworm main" >> /etc/apt/sources.list.d/debian.list \
