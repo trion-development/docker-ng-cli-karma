@@ -15,7 +15,6 @@ RUN apt-get update \
       xvfb \
       libxss1 \
       libosmesa6 \
-      libgconf-2-4 \
       wget \
       apt-transport-https \
  && MACH=$(uname -m) \
@@ -44,6 +43,9 @@ RUN apt-get update \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /etc/alternatives/google-chrome \
  && ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser 
+
+# fail the build if the || true fallbacks above hid a missing xvfb or chrome
+RUN command -v Xvfb && test -x /usr/bin/google-chrome.real
 
 
 # This may be desired, but breaks past behaviour
