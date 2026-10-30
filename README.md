@@ -63,12 +63,19 @@ If you forget to expose the /tmp/.X* socket you'll get an error message like:
 ERROR:nacl_helper_linux.cc(310)] NaCl helper process running without a sandbox!
 ```
 
-## What about *-headless browsers
-Mozilla Firefox and Google Chrome are in the process to provide headless browsers capable of executing integration tests.
+## What about X-headless browsers
+Google Chrome and Mozilla Firefox both provide headless modes, and Karma has launchers for them (`ChromeHeadless`, `FirefoxHeadless`).
 
-Currently WebGL needs the mesa software renderer for Chrome, but it will change to the swift renderer, see https://bugs.chromium.org/p/chromium/issues/detail?id=617551
+With this image you do not depend on the headless mode:
+The image provides Chrome (Chromium on arm64) wrapped in Xvfb, so the regular Chrome launcher runs without a display and no extra Karma configuration is required.
+Firefox is not part of the image.
 
-Mozilla is still working on headless support in Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=1338004
+If you prefer `ChromeHeadless`, it can be used with the Chrome in this image.
+Note that the `google-chrome` binary is the Xvfb wrapper, and Karma's headless launcher typically needs the `--no-sandbox` flag when running in a container as a non-root user.
+Some versions of `karma-chrome-launcher` have been reported to hang after the test run with `ChromeHeadless`, see https://github.com/karma-runner/karma-chrome-launcher/issues/154.
+
+WebGL still relies on Mesa software rendering, see [Using WebGL](#using-webgl).
+
 
 ## What if tests are not running (reliably)
 Run the tests in interactive debugging mode (see above) and check the browser console.
